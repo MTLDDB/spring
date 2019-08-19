@@ -141,7 +141,7 @@ public class testHibernate {
 ////            s.createQuery("from Category").list();
 ////            s.createQuery("from Product").list();
             Category category=new Category();
-            category.setName("c2");
+            category.setName("c3");
             s.save(category);
             Product product=(Product) s.get(Product.class,1);
             product.setCategory(category);
