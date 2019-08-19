@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+   http://www.springframework.org/schema/context
+   http://www.springframework.org/schema/context/spring-context.xsd
+   http://www.springframework.org/schema/aop
+   http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--使用注释注入bean，与bean功能相同-->
+    <context:component-scan base-package="pojo"/>
+    <bean name="s" class="service.ProductService">
+    </bean>
+    <!--注释配置，与aop:config相同功能-->
+    <context:component-scan base-package="aspect"/>
+    <context:component-scan base-package="service"/>
+    <!--扫描包com.how2java.aspect和com.how2java.service，定位业务类和切面类-->
+    <aop:aspectj-autoproxy/>
+
+    <!--找到被注解了的切面类，进行切面配置-->
+    <!--使用注释注入对象行为，与property功能相同-->
+    <!--<context:annotation-config/>
+   <bean name="c" class="pojo.Category">
+       <property name="name" value="category 1"/>
+   </bean>
+   <bean name="p" class="pojo.Product">
+       <property name="name" value="product1" />
+       <property name="category" ref="c" />
+    </bean>
+     <bean id="loggerAspect" class="aspect.LoggerAspect"/>
+    <aop:config>
+        <aop:pointcut id="loggerCutPoint" expression="execution(* service.ProductService.*(..)) "/>
+        * 返回任意类型
+        service.ProductService.* 包名以service.ProductService 开头的类的任意方法
+        (..) 参数是任意数量和类型
+    <aop:aspect id="logAspect" ref="loggerAspect">
+        <aop:around pointcut-ref="loggerCutPoint" method="before"/>
+        Before——在方法调用之前调用通知
+        After——在方法完成之后调用通知，无论方法执行成功与否
+        After-returning——在方法执行成功之后调用通知
+        After-throwing——在方法抛出异常后进行通知
+        Around——通知包裹了被通知的方法，在被通知的方法调用之前和调用之后执行自定义的行为
+    </aop:aspect>
+</aop:config>-->
+
+
+</beans>
