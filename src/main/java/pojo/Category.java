@@ -12,7 +12,7 @@ public class Category {
 
     private int id;
     private String name;
-    Set<ProductH> products;
+    Set<Product> products;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
@@ -30,12 +30,14 @@ public class Category {
     public void setName(String name) {
         this.name = name;
     }
-//    public Set<ProductH> getProducts() {
-//        return products;
-//    }
-//    public void setProducts(Set<ProductH> products) {
-//        this.products = products;
-//    }
+    @OneToMany(fetch=FetchType.EAGER)//,fetch=FetchType.EAGER 表示不进行延迟加载(FetchType.LAZY表示要进行延迟加载)
+    @JoinColumn(name="cid")
+    public Set<Product> getProducts() {
+        return products;
+    }
+    public void setProducts(Set<Product> products) {
+        this.products = products;
+    }
 
 
 }

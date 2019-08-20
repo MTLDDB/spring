@@ -75,11 +75,17 @@ public class testHibernate {
 //            s.update(p);
 
 //            Category c = (Category) s.get(Category.class, 1);//一对多
-//            Set<ProductH> ps = c.getProducts();
-//            for (ProductH p : ps) {
+//            Set<Product> ps = c.getProducts();
+//            for (Product p : ps) {
 //                System.out.println(p.getName());
 //            }
+
+
+
+//            Criteria c= s.createCriteria(ProductH.class);//通过session的createCriteria创建一个Criteria 对象
+//            c.add(Restrictions.naturalId());
 //            Set<User> users = new HashSet();//多对多
+//            users.addAll(c.list());
 //            for (int i = 0; i < 3; i++) {
 //                User u =new User();
 //                u.setName("user"+i);
@@ -88,10 +94,27 @@ public class testHibernate {
 //                s.clear();
 //            }
 //            //产品1被用户1,2,3购买
-//            ProductH p1 = (ProductH) s.get(ProductH.class, 1);//
-//
-//            p1.setUsers(users);
+ //         Product p1 = (Product) s.get(Product.class, 1);
+ //         p1.setUsers(users);
+ //         s.save(p1);
+
+
+//            Set<User> users = new HashSet();//获取购买商品1的用户
+//            Product p1 = (Product) s.get(Product.class, 1);
+//            users=p1.getUsers();
+//            for(User user:users){
+//                System.out.println(user.getName());
+//            }
 //            s.save(p1);
+
+//            User user= (User) s.get(User.class,1);//用户1买的所有的商品
+//            Set<Product> products=new HashSet();
+//            products=user.getProducts();
+//            for(Product product:products){
+//                System.out.println(product.getName());
+//            }
+//            s.save(user);
+
 
 
 //            ProductH p = (ProductH)s.load(ProductH.class, 1);//延迟加载
@@ -100,7 +123,7 @@ public class testHibernate {
 //            System.out.println("log2");
 
 //            Category c = (Category) s.get(Category.class, 1);//懒加载,用到时在加载
-//
+
 //            System.out.println("log1");
 //            System.out.println(c.getProducts());
 //            System.out.println("log1");
@@ -140,12 +163,14 @@ public class testHibernate {
 ////            s.createQuery("from Category").list();
 ////            s.createQuery("from Category").list();
 ////            s.createQuery("from Product").list();
-            Category category=new Category();
-            category.setName("c3");
-            s.save(category);
-            Product product=(Product) s.get(Product.class,1);
-            product.setCategory(category);
-            s.save(product);
+
+
+//            Category category=new Category();//注释多对一
+//            category.setName("c3");
+//            s.save(category);
+//            Product product=(Product) s.get(Product.class,1);
+//            product.setCategory(category);
+//            s.save(product);
             s.getTransaction().commit();
             s.close();
             sf.close();

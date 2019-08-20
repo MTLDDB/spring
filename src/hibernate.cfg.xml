@@ -36,9 +36,10 @@
         <property name="hibernate.c3p0.validate">false</property>-->
         <mapping resource="ProductH.hbm.xml" />
         <!--<mapping resource="Category.hbm.xml" />-->
-        <mapping resource="User.hbm.xml"/>
+        <!--<mapping resource="User.hbm.xml"/>-->
         <mapping class="pojo.Product"/>
         <mapping class="pojo.Category"/>
+        <mapping class="pojo.User"/>
     </session-factory>
 
 </hibernate-configuration>

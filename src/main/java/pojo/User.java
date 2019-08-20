@@ -1,12 +1,17 @@
 package pojo;
 
+import javax.persistence.*;
 import java.util.Set;
-
+@Entity
+@Table(name = "user_")
 public class User {
 
     int id;
     String name;
     Set<Product> products;
+   // Category category;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
     }
@@ -19,11 +24,27 @@ public class User {
     public void setName(String name) {
         this.name = name;
     }
+    @ManyToMany(cascade= CascadeType.ALL,fetch= FetchType.EAGER)
+    @JoinTable(
+            name="user_product_",
+            joinColumns=@JoinColumn(name="uid"),
+            inverseJoinColumns=@JoinColumn(name="pid")
+    )
     public Set<Product> getProducts() {
         return products;
     }
     public void setProducts(Set<Product> products) {
         this.products = products;
     }
+
+//    @ManyToOne
+//    @JoinColumn(name="cid")
+//    public Category getCategory() {
+//        return category;
+//    }
+//    public void setCategory(Category category) {
+//        this.category = category;
+//    }
+
 }
 
